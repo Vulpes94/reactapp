@@ -1,7 +1,7 @@
 import { StyleSheet, Text, Pressable } from "react-native";
 import React from "react";
 
-const ButtonTypes = {
+const CalcButtonTypes = {
   NUMBER: "NUMBER",
   OPERATOR: "OPERATOR",
 };
@@ -10,18 +10,18 @@ const Colors = {
   OPERATOR: ["#f59e0b", "#b45309"],
 };
 
-function Button({ title, onPress, buttonStyle, buttonType }) {
+function CalcButton({ title, onPress, buttonStyle, buttonType }) {
   return (
     <Pressable
       style={({ pressed }) => [
         styles.button,
         {
           backgroundColor:
-            buttonType === ButtonTypes.NUMBER ? "#71717a" : "#f59e0b",
+            buttonType === CalcButtonTypes.NUMBER ? "#71717a" : "#f59e0b",
         },
         pressed && {
           backgroundColor:
-            buttonType === ButtonTypes.NUMBER ? "#3f3f46" : "#b45309",
+            buttonType === CalcButtonTypes.NUMBER ? "#3f3f46" : "#b45309",
         },
         buttonStyle,
       ]}
@@ -43,5 +43,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export { ButtonTypes };
-export default Button;
+export { CalcButtonTypes };
+export default CalcButton;

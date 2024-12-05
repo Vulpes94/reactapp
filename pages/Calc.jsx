@@ -1,13 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import Button, { ButtonTypes } from "@/components/Button";
+import CalcButton, { CalcButtonTypes } from "@/components/CalcButton";
 
 function Calc() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
       <Text style={styles.text}>Calc app</Text>
-      <Button
+      <CalcButton
         title="1"
         onPress={() => console.log(1)}
         buttonStyle={{
@@ -15,9 +15,9 @@ function Calc() {
           height: 100,
           marginTop: 1,
         }}
-        buttonType={ButtonTypes.NUMBER}
+        buttonType={CalcButtonTypes.NUMBER}
       />
-      <Button
+      <CalcButton
         title="0"
         onPress={() => console.log(0)}
         buttonStyle={{
@@ -25,9 +25,9 @@ function Calc() {
           height: 100,
           marginTop: 1,
         }}
-        buttonType={ButtonTypes.NUMBER}
+        buttonType={CalcButtonTypes.NUMBER}
       />
-      <Button title="title" onPress={() => console.log("click!")} />
+      <CalcButton title="title" onPress={() => console.log("click!")} />
     </View>
   );
 }
