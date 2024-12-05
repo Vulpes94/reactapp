@@ -8,6 +8,7 @@ import TouchableOpacity from "@/pages/TouchableOpacity";
 import SimpleTodo from "@/pages/SimpleTodo";
 import Calc from "@/pages/Calc";
 import Diary from "@/pages/Diary";
+import ZipCodeFinder from "@/pages/ZipCodeFinder";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,7 @@ export default function HomeScreen() {
       <Stack.Screen name="SimpleTodo" component={SimpleTodo} />
       <Stack.Screen name="Calc" component={Calc} />
       <Stack.Screen name="Diary" component={Diary} />
+      <Stack.Screen name="ZipCodeFinder" component={ZipCodeFinder} />
     </Stack.Navigator>
   );
 }

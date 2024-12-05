@@ -8,6 +8,7 @@ const screenList = [
   { key: "SimpleTodo", title: "할일관리", link: "SimpleTodo" },
   { key: "Calc", title: "계산기", link: "Calc" },
   { key: "Diary", title: "일기", link: "Diary" },
+  { key: "ZipCodeFinder", title: "주소검색", link: "ZipCodeFinder" },
 ];
 
 function HomeF({ navigation }) {
