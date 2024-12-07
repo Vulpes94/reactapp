@@ -1,4 +1,3 @@
-import { View, StyleSheet } from "react-native";
 import { useState, useEffect } from "react";
 import { DateTime } from "luxon";
 import styled from "styled-components/native";
@@ -16,12 +15,10 @@ export default function ClockDigital() {
   }, []);
 
   return (
-    <View style={styles.row}>
-      <Container source={image} resizeMode="stretch">
-        <TimeText>{date.toFormat("HH:mm")}</TimeText>
-        <Second>{date.toFormat("ss")}</Second>
-      </Container>
-    </View>
+    <Container source={image} resizeMode="stretch">
+      <TimeText>{date.toFormat("HH:mm")}</TimeText>
+      <Second>{date.toFormat("ss")}</Second>
+    </Container>
   );
 }
 
@@ -41,9 +38,3 @@ const Second = styled.Text`
   font-weight: bold;
   margintop: 12px;
 `;
-
-const styles = StyleSheet.create({
-  row: {
-    flexDirection: "row",
-  },
-});
