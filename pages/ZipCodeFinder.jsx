@@ -14,14 +14,16 @@ import Row from "@/components/ZipCodeFinder/Row";
 import Padding from "@/components/ZipCodeFinder/Padding";
 import AddressItem from "@/components/ZipCodeFinder/AddressItem";
 
+import { ZIP_URL_KEY, ZIP_API_KEY } from "@env";
+
 export default function ZipCodeFinder() {
   const [keyword, setKeyword] = useState("");
   const [list, setList] = useState([]);
   const search = useCallback(() => {
     axios
-      .get("https://business.juso.go.kr/addrlink/addrLinkApi.do", {
+      .get(ZIP_URL_KEY, {
         params: {
-          confmKey: "",
+          confmKey: ZIP_API_KEY,
           currentPage: 1,
           countPerPage: 100,
           keyword,
@@ -42,10 +44,10 @@ export default function ZipCodeFinder() {
           <TextInput
             style={{
               flex: 1,
-              borderWidth: 1, // 테두리 두께 설정
-              borderColor: "#000", // 테두리 색상 설정 (검정)
-              borderRadius: 4, // 둥근 모서리
-              padding: 8, // 내부 여백 추가
+              borderWidth: 1,
+              borderColor: "#000",
+              borderRadius: 4,
+              padding: 8,
             }}
             value={keyword}
             onChangeText={(text) => setKeyword(text)}

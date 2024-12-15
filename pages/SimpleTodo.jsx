@@ -1,9 +1,15 @@
 import React from "react";
-import { Platform, Button } from "react-native";
+import {
+  Platform,
+  Button,
+  Keyboard,
+  TouchableWithoutFeedback,
+} from "react-native";
 import styled from "styled-components/native";
 import _ from "lodash";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { produce } from "immer";
+import { v4 as uuidv4 } from "uuid";
 
 export default function SimpleTodo() {
   const [list, setList] = React.useState([]);
@@ -29,60 +35,68 @@ export default function SimpleTodo() {
   return (
     <>
       <Container>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-        >
-          <Contents>
-            {list.map((item) => {
-              return (
-                <Todoltem key={item.id}>
-                  <Check
-                    onPress={() => {
-                      store(
-                        produce(list, (draft) => {
-                          const index = list.indexOf(item);
-                          draft[index].done = !list[index].done;
-                        })
-                      );
-                    }}
-                  >
-                    <Checklcon>{item.done ? "\u2611" : "\u25A1"}</Checklcon>
-                  </Check>
-                  <TodoltemText>{item.todo}</TodoltemText>
-                  <TodoltemButton
-                    title="삭제"
-                    onPress={() => {
-                      store(
-                        _.reject(list, (element) => element.id === item.id)
-                      );
-                    }}
-                  />
-                </Todoltem>
-              );
-            })}
-          </Contents>
-          <InputContainer>
-            <Input
-              value={inputTodo}
-              onChangeText={(value) => setInputTodo(value)}
-            />
-            <Button
-              title="전송"
-              onPress={() => {
-                if (inputTodo === "") {
-                  return;
-                }
-                const newItem = {
-                  id: new Date().getTime().toString(),
-                  todo: inputTodo,
-                  done: false,
-                };
-                store([...list, newItem]);
-                setInputTodo("");
-              }}
-            />
-          </InputContainer>
-        </KeyboardAvoidingView>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
+            keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 0} // 키보드 위 여백 설정
+            style={{ flex: 1 }}
+          >
+            <Contents>
+              {list.map((item) => {
+                return (
+                  <Todoltem key={item.id}>
+                    <Check
+                      onPress={() => {
+                        store(
+                          produce(list, (draft) => {
+                            const index = list.indexOf(item);
+                            draft[index].done = !list[index].done;
+                          })
+                        );
+                      }}
+                    >
+                      <Checklcon>{item.done ? "\u2611" : "\u25A1"}</Checklcon>
+                    </Check>
+                    <TodoltemText>{item.todo}</TodoltemText>
+                    {item.done ? (
+                      <TodoltemButton title="수정" onPress={() => {}} />
+                    ) : (
+                      <TodoltemButton
+                        title="삭제"
+                        onPress={() => {
+                          store(
+                            _.reject(list, (element) => element.id === item.id)
+                          );
+                        }}
+                      />
+                    )}
+                  </Todoltem>
+                );
+              })}
+            </Contents>
+            <InputContainer>
+              <Input
+                value={inputTodo}
+                onChangeText={(value) => setInputTodo(value)}
+              />
+              <Button
+                title="전송"
+                onPress={() => {
+                  if (inputTodo === "") {
+                    return;
+                  }
+                  const newItem = {
+                    id: uuidv4(),
+                    todo: inputTodo,
+                    done: false,
+                  };
+                  store([...list, newItem]);
+                  setInputTodo("");
+                }}
+              />
+            </InputContainer>
+          </KeyboardAvoidingView>
+        </TouchableWithoutFeedback>
       </Container>
     </>
   );
@@ -120,7 +134,7 @@ const InputContainer = styled.View`
 `;
 
 const Input = styled.TextInput`
-  border: 1px solid #e5e5e5;
+  border: 1px solid #000000;
   flex: 1;
 `;
 
