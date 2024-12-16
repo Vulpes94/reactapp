@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 
-function Button(props) {
+export default function Button(props) {
   return (
     <Container onPress={props.onPress}>
       <Label>{props.children}</Label>
@@ -22,5 +22,3 @@ const Label = styled.Text`
   font-weight: bold;
   color: #ffffff;
 `;
-
-export default Button;

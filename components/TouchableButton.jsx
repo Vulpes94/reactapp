@@ -1,6 +1,6 @@
 import { Text, TouchableOpacity } from "react-native";
 
-function TouchableButton({ title }) {
+export default function TouchableButton({ title }) {
   return (
     <TouchableOpacity
       style={{ backgroundColor: "red", padding: 20 }}
@@ -10,4 +10,3 @@ function TouchableButton({ title }) {
     </TouchableOpacity>
   );
 }
-export default TouchableButton;

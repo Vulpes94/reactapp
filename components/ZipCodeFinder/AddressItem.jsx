@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-function AddressItem({ item }) {
+export default function AddressItem({ item }) {
   return (
     <View style={styles.container}>
       <Text>{`[${item.zipNo}] ${item.roadAddr}`}</Text>
@@ -16,5 +16,3 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
 });
-
-export default AddressItem;

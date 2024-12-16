@@ -6,7 +6,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert } from "react-native";
 import Button from "@/components/Diary/Button";
 
-function Detail({ navigation, route }) {
+export default function Detail({ navigation, route }) {
   const [text, setText] = React.useState("");
 
   React.useEffect(() => {
@@ -65,5 +65,3 @@ const Text = styled.Text`
   line-height: 28px;
   flex: 1;
 `;
-
-export default Detail;

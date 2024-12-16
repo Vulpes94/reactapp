@@ -7,27 +7,6 @@ import styled from "styled-components/native";
 let numbers = [];
 _.times(45, (n) => numbers.push(n + 1));
 
-const Ball = styled.View`
-  width: 50px;
-  height: 50px;
-  background: ${(props) => {
-    if (props.value < 11) {
-      return "#e5e251";
-    } else if (props.value < 21) {
-      return "#517FE5";
-    } else if (props.value < 31) {
-      return "#E54036";
-    } else if (props.value < 41) {
-      return "#e5e5e5";
-    } else {
-      return "#43BF74";
-    }
-  }};
-  border-radius: 25px;
-  justify-content: center;
-  align-items: center;
-`;
-
 export default function LottoGenerator() {
   const [displayNumbers, setNumbers] = React.useState(_.shuffle(numbers));
   return (
@@ -49,6 +28,27 @@ export default function LottoGenerator() {
     </SafeAreaView>
   );
 }
+
+const Ball = styled.View`
+  width: 50px;
+  height: 50px;
+  background: ${(props) => {
+    if (props.value < 11) {
+      return "#e5e251";
+    } else if (props.value < 21) {
+      return "#517FE5";
+    } else if (props.value < 31) {
+      return "#E54036";
+    } else if (props.value < 41) {
+      return "#e5e5e5";
+    } else {
+      return "#43BF74";
+    }
+  }};
+  border-radius: 25px;
+  justify-content: center;
+  align-items: center;
+`;
 
 const styles = StyleSheet.create({
   container: {

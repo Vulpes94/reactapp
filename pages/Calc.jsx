@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import CalcButton, { CalcButtonTypes } from "@/components/CalcButton";
 
-function Calc() {
+export default function Calc() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -47,5 +47,3 @@ const styles = StyleSheet.create({
     paddingRight: 30,
   },
 });
-
-export default Calc;

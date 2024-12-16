@@ -10,7 +10,12 @@ const Colors = {
   OPERATOR: ["#f59e0b", "#b45309"],
 };
 
-function CalcButton({ title, onPress, buttonStyle, buttonType }) {
+export default function CalcButton({
+  title,
+  onPress,
+  buttonStyle,
+  buttonType,
+}) {
   return (
     <Pressable
       style={({ pressed }) => [
@@ -44,4 +49,3 @@ const styles = StyleSheet.create({
 });
 
 export { CalcButtonTypes };
-export default CalcButton;

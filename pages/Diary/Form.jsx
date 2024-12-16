@@ -12,21 +12,7 @@ import {
   Alert,
 } from "react-native";
 
-const Label = styled.Text`
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 12px;
-`;
-
-const Input = styled.TextInput`
-  width: 100%;
-  border: 1px solid #666666;
-  padding: 8px;
-  font-size: 20px;
-  margin-bottom: 12px;
-`;
-
-function Form({ navigation }) {
+export default function Form({ navigation }) {
   const [date, setDate] = React.useState("");
   const [text, setText] = React.useState("");
 
@@ -107,4 +93,17 @@ function Form({ navigation }) {
     </Container>
   );
 }
-export default Form;
+
+const Label = styled.Text`
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 12px;
+`;
+
+const Input = styled.TextInput`
+  width: 100%;
+  border: 1px solid #666666;
+  padding: 8px;
+  font-size: 20px;
+  margin-bottom: 12px;
+`;

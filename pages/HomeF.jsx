@@ -10,7 +10,7 @@ const screenList = [
   { key: "Money", title: "환율", link: "Money" },
 ];
 
-function HomeF({ navigation }) {
+export default function HomeF({ navigation }) {
   const renderItem = useCallback(({ item }) => {
     return (
       <TouchableOpacity
@@ -48,5 +48,3 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
-
-export default HomeF;

@@ -6,18 +6,7 @@ import styled from "styled-components/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import _ from "lodash";
 
-const ListItem = styled.TouchableOpacity`
-  width: 100%;
-  padding: 12px 0;
-  border-bottom-color: #aaaaaa;
-  border-bottom-width: 1px;
-`;
-
-const Label = styled.Text`
-  font-size: 20px;
-`;
-
-function List({ navigation }) {
+export default function List({ navigation }) {
   const [list, setList] = React.useState([]);
   const load = async () => {
     const data = await AsyncStorage.getItem("list");
@@ -52,4 +41,14 @@ function List({ navigation }) {
     </Container>
   );
 }
-export default List;
+
+const ListItem = styled.TouchableOpacity`
+  width: 100%;
+  padding: 12px 0;
+  border-bottom-color: #aaaaaa;
+  border-bottom-width: 1px;
+`;
+
+const Label = styled.Text`
+  font-size: 20px;
+`;
