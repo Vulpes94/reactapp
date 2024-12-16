@@ -14,6 +14,8 @@ import { v4 as uuidv4 } from "uuid";
 export default function SimpleTodo() {
   const [list, setList] = React.useState([]);
   const [inputTodo, setInputTodo] = React.useState("");
+  const [editingId, setEditingId] = React.useState(null);
+  const [editingText, setEditingText] = React.useState("");
 
   React.useEffect(() => {
     AsyncStorage.getItem("list")
@@ -25,7 +27,7 @@ export default function SimpleTodo() {
       .catch((error) => {
         alert(error.message);
       });
-  });
+  }, []);
 
   const store = (newList) => {
     setList(newList);
@@ -38,11 +40,12 @@ export default function SimpleTodo() {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
-            keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 0} // 키보드 위 여백 설정
+            keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 0}
             style={{ flex: 1 }}
           >
             <Contents>
               {list.map((item) => {
+                const isEditing = editingId === item.id;
                 return (
                   <Todoltem key={item.id}>
                     <Check
@@ -57,9 +60,38 @@ export default function SimpleTodo() {
                     >
                       <Checklcon>{item.done ? "\u2611" : "\u25A1"}</Checklcon>
                     </Check>
-                    <TodoltemText>{item.todo}</TodoltemText>
+                    {isEditing ? (
+                      <Input
+                        value={editingText}
+                        onChangeText={(value) => setEditingText(value)}
+                      />
+                    ) : (
+                      <TodoltemText>{item.todo}</TodoltemText>
+                    )}
                     {item.done ? (
-                      <TodoltemButton title="수정" onPress={() => {}} />
+                      isEditing ? (
+                        <TodoltemButton
+                          title="저장"
+                          onPress={() => {
+                            store(
+                              produce(list, (draft) => {
+                                const index = list.indexOf(item);
+                                draft[index].todo = editingText;
+                              })
+                            );
+                            setEditingId(null);
+                            setEditingText("");
+                          }}
+                        />
+                      ) : (
+                        <TodoltemButton
+                          title="수정"
+                          onPress={() => {
+                            setEditingId(item.id);
+                            setEditingText(item.todo);
+                          }}
+                        />
+                      )
                     ) : (
                       <TodoltemButton
                         title="삭제"
@@ -101,7 +133,6 @@ export default function SimpleTodo() {
     </>
   );
 }
-
 const Container = styled.SafeAreaView`
   flex: 1;
   padding-top: $(Constants.statusBarHeight) px;
