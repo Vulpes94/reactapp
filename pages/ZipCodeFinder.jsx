@@ -42,6 +42,7 @@ export default function ZipCodeFinder() {
       <Padding style={{ flex: 1 }}>
         <Row>
           <TextInput
+            placeholder={"도로명 주소를 입력하세요"}
             style={{
               flex: 1,
               borderWidth: 1,
